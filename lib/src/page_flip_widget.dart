@@ -13,6 +13,7 @@ class PageFlipWidget extends StatefulWidget {
     required this.children,
     this.initialIndex = 0,
     this.lastPage,
+    required this.currentPage,
   }) : super(key: key);
 
   final int? index;
@@ -23,6 +24,7 @@ class PageFlipWidget extends StatefulWidget {
   final Widget? lastPage;
   final double cutoffForward;
   final double cutoffPrevious;
+  final Function(int) currentPage;
 
   @override
   PageFlipWidgetState createState() => PageFlipWidgetState();
@@ -150,6 +152,7 @@ class PageFlipWidgetState extends State<PageFlipWidget> with TickerProviderState
         }
       }
     }
+    widget.currentPage(pageNumber + 1);
 
     _isForward = null;
     currentPage.value = -1;
